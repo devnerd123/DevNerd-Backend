@@ -9,16 +9,24 @@ module.exports = {
             throw err;
         }
     },
-    createCompany: async (values) => {
-        const companyInput = values.companyInput;
+    createCompany: async ({ companyInput }) => {
+        const { name, short_des, description,company_url,logo, location, company_size, languages, is_sponservisa, perks_and_benefits, tags, founding_year} = companyInput;
+
         const company = new Company({
-            name: companyInput.name,
-            short_des: companyInput.short_des,
-            description: companyInput.description,
-            logo_url: companyInput.logo_url,
-            location: companyInput.location,
-            date: new Date(companyInput.date)
+            name,
+            short_des,
+            description,
+            logo,
+            company_url,
+            location,
+            company_size,
+            languages,
+            is_sponservisa,
+            perks_and_benefits,
+            tags,
+            founding_year
         });
+
         try {
             const savedCompany = await company.save();
             console.log(savedCompany);
