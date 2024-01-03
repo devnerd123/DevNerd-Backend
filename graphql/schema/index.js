@@ -11,6 +11,7 @@ const mainSchema = `
     type Query {
         jobs: [Job!]!
         companies: [Company!]!
+        company(id: ID!): Company
         users: [User!]!
         login(email:String!, password:String!): AuthData!
     }

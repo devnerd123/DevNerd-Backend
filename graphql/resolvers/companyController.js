@@ -1,4 +1,5 @@
 const Company = require('../../models/company');
+const { ObjectId } = require('mongodb');
 
 module.exports = {
     companies: async () => {
@@ -9,8 +10,19 @@ module.exports = {
             throw err;
         }
     },
+    company: async ({ id }) => {
+        try {
+            const company = await Company.findById(id);
+            if (!company) {
+                throw new Error('Company not found');
+            }
+            return { ...company._doc, _id: company.id };
+        } catch (err) {
+            throw err;
+        }
+    },
     createCompany: async ({ companyInput }) => {
-        const { name, short_des, description,company_url,logo, location, company_size, languages, is_sponservisa, perks_and_benefits, tags, founding_year} = companyInput;
+        const { name, short_des, description, company_url, logo, location, company_size, industry, languages, is_sponservisa, perks_and_benefits, tags, founding_year } = companyInput;
 
         const company = new Company({
             name,
@@ -20,6 +32,7 @@ module.exports = {
             company_url,
             location,
             company_size,
+            industry,
             languages,
             is_sponservisa,
             perks_and_benefits,

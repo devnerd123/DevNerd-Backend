@@ -38,6 +38,10 @@ const companySchema = new Schema(
       type: String,
       required: true,
     },
+    industry: {
+      type: String,
+      required: false,
+    },
     languages: {
       type: [String],
       required: false,
@@ -54,14 +58,20 @@ const companySchema = new Schema(
       type: [String],
       required: false,
     },
-    founding_year:{
-        type: Number,
-        required:false
+    founding_year: {
+      type: Number,
+      required: false
     },
     created_by: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+    jobs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Job',
+      },
+    ],
   },
   { timestamps: true }
 );
