@@ -8,6 +8,7 @@ module.exports = `
         logo: String
         location: CompanyLocation!
         company_size: String!
+        industry: String
         languages: [String]
         is_sponservisa: Boolean
         perks_and_benefits: [String]
@@ -32,6 +33,7 @@ module.exports = `
         company_url: String!
         location: CompanyLocationInput!
         company_size: String!
+        industry: String
         languages: [String]
         is_sponservisa: Boolean
         perks_and_benefits: [String]
